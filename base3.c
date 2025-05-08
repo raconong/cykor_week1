@@ -21,7 +21,7 @@ void pop_stack(int count)
 
 void restore_fp()
 {
-    SP = FP;
+    
     FP = call_stack[SP];
     SP--;
 }
@@ -76,7 +76,7 @@ void create_frame(int argc, int arg[], const char* argnames[],
 // 공통 프레임 제거 함수
 void remove_frame(int localc, int argc)
 {
-    pop_stack(localc);      // 지역변수 제거
+    SP = FP;     // 지역변수 제거
     restore_fp();           // FP 복원
     pop_stack(argc + 1);    // 매개변수 + Return Address 제거
 }
